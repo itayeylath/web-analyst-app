@@ -1,1 +1,1 @@
-# lightspin-home-assignment
+# Lightspin home assignment
