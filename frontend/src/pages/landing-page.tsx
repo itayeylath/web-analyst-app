@@ -4,7 +4,7 @@ const LandingPage = () => {
     return (
       
       <div className="" >
-       <Graph></Graph>
+       <Graph decimalRound={2} sampleRate={1000} webName={"facebook"}/>
       </div>
       
     );
