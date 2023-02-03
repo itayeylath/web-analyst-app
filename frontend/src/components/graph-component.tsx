@@ -1,22 +1,11 @@
 import { useEffect, useState } from "react";
-import { Line } from "react-chartjs-2";
-import ClipLoader from "react-spinners/ClipLoader";
-import {
-  Chart as ChartJS,
-  Title,
-  Tooltip,
-  LineElement,
-  Legend,
-  CategoryScale,
-  LinearScale,
-  PointElement,
-} from "chart.js";
 import {
   axiosGetAllsamples,
   axiosGetsample,
   axiosPostSamples,
 } from "../services/axios/facebook-axios";
 import {
+  getAvgArr,
   getRoundArr,
   getSortArr,
   getSortArrLeft,
@@ -29,16 +18,6 @@ import {
   GraphProps,
 } from "../types/graph-component-types";
 import ChartJs from "./chart-js-component";
-
-ChartJS.register(
-  Title,
-  Tooltip,
-  LineElement,
-  Legend,
-  CategoryScale,
-  LinearScale,
-  PointElement
-);
 
 const defultGraphData: graphObj = {
   labels: [],
@@ -61,23 +40,18 @@ const Graph = (props: GraphProps) => {
   const [isPauseSample, setIsPauseSample] = useState<boolean>(true);
   const [isStopSample, setIsStopSample] = useState<boolean>(true);
   const [loading, setLoading] = useState<boolean>(false);
-  const [index, setIndex] = useState<any>(0);
+  const [index, setIndex] = useState<number>(0);
   const [isLeft, setIsLeft] = useState<boolean>(false);
   const [isRight, setIsRight] = useState<boolean>(false);
   const [isPaginationLeft, setIsPaginationLeft] = useState<boolean>(false);
   const [isPaginationRight, setIsPaginationRight] = useState<boolean>(true);
-  // Loding component when lodeing the page.
-  useEffect(() => {
-    setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-    }, 500);
-  }, []);
+
   // Get all samples from DB ONLY at lodeing the page.
   useEffect(() => {
     axiosGetAllsamples("facebook").then((result) => {
       setIndex(result.length);
       setGraphData([...result]);
+
       const data = getSortArr(result, props.sortValue);
       const labels = getRoundArr(data, props.decimalRound);
       setGraphObj({
@@ -92,9 +66,11 @@ const Graph = (props: GraphProps) => {
       });
     });
   }, []);
+
   // Get all samples from State at click on start button.
   useEffect(() => {
     setIndex(graphData.length);
+    const avg = getAvgArr(graphData, index);
     const data = getSortArr(graphData, props.sortValue);
     const labels = getRoundArr(data, props.decimalRound);
     setGraphObj({
@@ -147,14 +123,12 @@ const Graph = (props: GraphProps) => {
     });
   }, [isRight]);
 
-  // Handle requests to start/pause/stop.
+  // Handle requests to start/pause/stop/right/left.
   const handelButtonStart = () => {
     if (intervalId) {
       clearInterval(intervalId);
     }
-
     setIsStartSample(true);
-
     let sampleInterval = setInterval(() => {
       axiosGetsample(props.webName).then((result) => {
         setGraphData((oldArr: any) => [...oldArr, result]);
@@ -229,7 +203,7 @@ const Graph = (props: GraphProps) => {
   };
   return (
     <div>
-          <ChartJs graphObj={graphObj} loading={loading}/>
+      <ChartJs graphObj={graphObj} loading={loading} />
       <button disabled={isStartSample} onClick={handelButtonStart}>
         START
       </button>

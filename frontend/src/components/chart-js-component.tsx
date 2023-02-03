@@ -53,10 +53,17 @@ const defultGraphData: graphObj = {
 };
 
 const ChartJs = (props: CharJSProps) => {
-
+   // Loding component when lodeing the page.
+   const [loading, setLoading] = useState<boolean>(false);
+   useEffect(() => {
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+    }, 500);
+  }, []);
   return (
     <div style={{ width: "500px", height: "200px" }}>
-      {props.loading ? (
+      {props.loading || loading? (
         <ClipLoader
           color={"#36d7b7"}
           loading={props.loading}

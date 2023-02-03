@@ -18,9 +18,10 @@ export interface GraphProps {
     webName: string
     sortValue: number
 }
-
 export interface CharJSProps {
   graphObj: graphObj
   loading: boolean
 }
-
+export interface AvgProps {
+  avg: number
+}
