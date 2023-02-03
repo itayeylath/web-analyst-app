@@ -51,8 +51,8 @@ const Graph = (props: GraphProps) => {
   const [graphObj, setGraphObj] = useState<graphObj>(defultGraphData);
   const [intervalId, setIntervalId] = useState<NodeJS.Timer>();
   const [isStartSample, setIsStartSample] = useState<boolean>(false);
-  const [isPauseSample, setIsPauseSample] = useState<boolean>(false);
-  const [isStopSample, setIsStopSample] = useState<boolean>(false);
+  const [isPauseSample, setIsPauseSample] = useState<boolean>(true);
+  const [isStopSample, setIsStopSample] = useState<boolean>(true);
 
   // Get all semples from DB ONLY at the first time of lodeing the page.
   useEffect(() => {
@@ -133,9 +133,9 @@ const Graph = (props: GraphProps) => {
       <div style={{ width: "500px", height: "200px" }}>
         <Line data={graphObj}>Fiest test</Line>
       </div>
-      <button onClick={handelButtonStart}>START</button>
-      <button onClick={handelButtonPause}>PAUSE</button>
-      <button onClick={handelButtonStop}>STOP</button>
+      <button disabled={isStartSample} onClick={handelButtonStart}>START</button>
+      <button disabled={isPauseSample} onClick={handelButtonPause}>PAUSE</button>
+      <button disabled={isStopSample} onClick={handelButtonStop}>STOP</button>
     </div>
   );
 };
