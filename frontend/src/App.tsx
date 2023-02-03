@@ -1,4 +1,3 @@
-import logo from "./logo.svg";
 import LandingPage from "./pages/landing-page";
 import "./styles/App.css";
 

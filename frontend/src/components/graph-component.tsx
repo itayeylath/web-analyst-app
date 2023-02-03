@@ -16,14 +16,19 @@ import {
   axiosGetsample,
   axiosPostSamples,
 } from "../services/axios/facebook-axios";
-import { getRoundArr, getSortArr, getSortArrLeft, getSortArrRight } from "../utilities/sort-arr";
+import {
+  getRoundArr,
+  getSortArr,
+  getSortArrLeft,
+  getSortArrRight,
+} from "../utilities/sort-arr";
 import {
   GraphData,
   GraphLabels,
   graphObj,
   GraphProps,
 } from "../types/graph-component-types";
-import { AnyARecord } from "dns";
+import ChartJs from "./chart-js-component";
 
 ChartJS.register(
   Title,
@@ -63,18 +68,17 @@ const Graph = (props: GraphProps) => {
   const [isPaginationRight, setIsPaginationRight] = useState<boolean>(true);
   // Loding component when lodeing the page.
   useEffect(() => {
-    setLoading(true)
-    setTimeout( () => {
-        setLoading(false)
-    },500)
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+    }, 500);
   }, []);
-
   // Get all samples from DB ONLY at lodeing the page.
   useEffect(() => {
     axiosGetAllsamples("facebook").then((result) => {
-        setIndex(result.length)
-        setGraphData([...result]);
-      const data = getSortArr(result,props.sortValue);
+      setIndex(result.length);
+      setGraphData([...result]);
+      const data = getSortArr(result, props.sortValue);
       const labels = getRoundArr(data, props.decimalRound);
       setGraphObj({
         labels: labels || [],
@@ -90,8 +94,8 @@ const Graph = (props: GraphProps) => {
   }, []);
   // Get all samples from State at click on start button.
   useEffect(() => {
-    setIndex(graphData.length)
-    const data = getSortArr(graphData,props.sortValue);
+    setIndex(graphData.length);
+    const data = getSortArr(graphData, props.sortValue);
     const labels = getRoundArr(data, props.decimalRound);
     setGraphObj({
       labels: [...labels],
@@ -107,10 +111,10 @@ const Graph = (props: GraphProps) => {
 
   // Get all relvant samples from State at click on left button.
   useEffect(() => {
-    const sortdata = getSortArrLeft(graphData,props.sortValue,index);
-    const value = (index-10)
-    setIndex(value)
-    const data = getSortArr(sortdata,props.sortValue);
+    const sortdata = getSortArrLeft(graphData, props.sortValue, index);
+    const value = index - 10;
+    setIndex(value);
+    const data = getSortArr(sortdata, props.sortValue);
     const labels = getRoundArr(data, props.decimalRound);
     setGraphObj({
       labels: [...labels],
@@ -126,10 +130,10 @@ const Graph = (props: GraphProps) => {
 
   // Get all relvant samples from State at click on right button.
   useEffect(() => {
-    const sortdata = getSortArrRight(graphData,props.sortValue,index);
-    const value = (index+10)
-    setIndex(value)
-    const data = getSortArr(sortdata,props.sortValue);
+    const sortdata = getSortArrRight(graphData, props.sortValue, index);
+    const value = index + 10;
+    setIndex(value);
+    const data = getSortArr(sortdata, props.sortValue);
     const labels = getRoundArr(data, props.decimalRound);
     setGraphObj({
       labels: [...labels],
@@ -145,7 +149,10 @@ const Graph = (props: GraphProps) => {
 
   // Handle requests to start/pause/stop.
   const handelButtonStart = () => {
-    if (intervalId) clearInterval(intervalId);
+    if (intervalId) {
+      clearInterval(intervalId);
+    }
+
     setIsStartSample(true);
 
     let sampleInterval = setInterval(() => {
@@ -159,84 +166,70 @@ const Graph = (props: GraphProps) => {
     setIntervalId(sampleInterval);
     setIsPauseSample(false);
     setIsStopSample(false);
+    setIsPaginationLeft(true);
+    setIsPaginationRight(true);
     console.log("Start");
   };
-
-
   const handelButtonPause = () => {
     clearInterval(intervalId);
 
     setIsStartSample(false);
     setIsPauseSample(true);
     setIsStopSample(false);
+    setIsPaginationLeft(false);
+    setIsPaginationRight(false);
 
     setIsGraphLoad((prev: any) => !prev);
     console.log("Pause");
   };
-
   const handelButtonStop = () => {
     setIsStartSample(false);
     setIsPauseSample(true);
     setIsStopSample(true);
+    setIsPaginationLeft(false);
+    setIsPaginationRight(false);
     clearInterval(intervalId);
     setIsGraphLoad((prev: any) => !prev);
     console.log("Stop");
-    setLoading(true)
-    axiosPostSamples({ "arr": newData }).then((result) => {
-        setLoading(false)
-      console.log("saved!")
+    setLoading(true);
+    axiosPostSamples({ arr: newData }).then((result) => {
+      setLoading(false);
+      console.log("saved!");
     });
   };
-
   const handelButtonRight = () => {
-    console.log("RIGHT")
+    console.log("RIGHT");
     setIsRight((prev: any) => !prev);
     setIsGraphLoad((prev: any) => !prev);
-    if ((index + 10) < graphData.length){
-        setIsPaginationRight(false)
+    if (index + 10 < graphData.length) {
+      setIsPaginationRight(false);
     } else {
-        setIsPaginationRight(true)
+      setIsPaginationRight(true);
     }
-    if ((index - 10) > 0){
-        setIsPaginationLeft(false)
+    if (index - 10 > 0) {
+      setIsPaginationLeft(false);
     } else {
-        setIsPaginationLeft(true)
+      setIsPaginationLeft(true);
     }
   };
-
   const handelButtonLeft = () => {
-    console.log("left")
+    console.log("left");
     setIsLeft((prev: any) => !prev);
     setIsGraphLoad((prev: any) => !prev);
-    if ((index - 10) > 0){
-        setIsPaginationLeft(false)
+    if (index - 10 > 0) {
+      setIsPaginationLeft(false);
     } else {
-        setIsPaginationLeft(true)
+      setIsPaginationLeft(true);
     }
-    if ((index + 10) > 0){
-        setIsPaginationRight(false)
+    if (index + 10 > 0) {
+      setIsPaginationRight(false);
     } else {
-        setIsPaginationRight(true)
+      setIsPaginationRight(true);
     }
   };
-
   return (
     <div>
-      <div style={{ width: "500px", height: "200px" }}>
-        {
-        loading ?
-        
-        <ClipLoader
-        color={"#36d7b7"}
-        loading={loading}
-        size={150}
-        cssOverride={{}}
-      />
-      :
-
-        <Line data={graphObj}>Fiest test</Line>
-        }
-      </div>
+          <ChartJs graphObj={graphObj} loading={loading}/>
       <button disabled={isStartSample} onClick={handelButtonStart}>
         START
       </button>

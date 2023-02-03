@@ -19,3 +19,8 @@ export interface GraphProps {
     sortValue: number
 }
 
+export interface CharJSProps {
+  graphObj: graphObj
+  loading: boolean
+}
+
