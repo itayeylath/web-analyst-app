@@ -16,5 +16,6 @@ export interface GraphProps {
     decimalRound: number
     sampleRate: number
     webName: string
+    sortValue: number
 }
 
