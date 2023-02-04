@@ -5,11 +5,13 @@ import {
   axiosPostSamples,
 } from "../services/axios/facebook-axios";
 import {
-  getAvgArr,
+  getAvgSample,
+  getHighestAndLowestSamples,
   getRoundArr,
   getSortArr,
   getSortArrLeft,
   getSortArrRight,
+  isHighestOrLowestSamples,
 } from "../utilities/sort-arr";
 import {
   GraphData,
@@ -45,13 +47,19 @@ const Graph = (props: GraphProps) => {
   const [isRight, setIsRight] = useState<boolean>(false);
   const [isPaginationLeft, setIsPaginationLeft] = useState<boolean>(false);
   const [isPaginationRight, setIsPaginationRight] = useState<boolean>(true);
-
+  const [avgData, setAvgData] = useState<number>(0);
+  const [highestSample, setHighestSample] = useState<number>(0);
+  const [lowestSample, setLowestSample] = useState<number>(0);
   // Get all samples from DB ONLY at lodeing the page.
   useEffect(() => {
     axiosGetAllsamples("facebook").then((result) => {
       setIndex(result.length);
       setGraphData([...result]);
-
+      const highstAndLowest = getHighestAndLowestSamples(result) 
+      setLowestSample(highstAndLowest.lowesest)
+      setHighestSample(highstAndLowest.highest)
+      const avg = getAvgSample(result);
+      setAvgData(avg)
       const data = getSortArr(result, props.sortValue);
       const labels = getRoundArr(data, props.decimalRound);
       setGraphObj({
@@ -70,7 +78,8 @@ const Graph = (props: GraphProps) => {
   // Get all samples from State at click on start button.
   useEffect(() => {
     setIndex(graphData.length);
-    const avg = getAvgArr(graphData, index);
+    const avg = getAvgSample(graphData);
+    setAvgData(avg)
     const data = getSortArr(graphData, props.sortValue);
     const labels = getRoundArr(data, props.decimalRound);
     setGraphObj({
@@ -131,6 +140,9 @@ const Graph = (props: GraphProps) => {
     setIsStartSample(true);
     let sampleInterval = setInterval(() => {
       axiosGetsample(props.webName).then((result) => {
+        const highstAndLowest = isHighestOrLowestSamples(result,highestSample,lowestSample) 
+        setLowestSample(highstAndLowest.lowesest)
+        setHighestSample(highstAndLowest.highest)
         setGraphData((oldArr: any) => [...oldArr, result]);
         setNewdata((oldArr: any) => [...oldArr, result]);
         setIsGraphLoad((prev: any) => !prev);
@@ -219,6 +231,11 @@ const Graph = (props: GraphProps) => {
       <button disabled={isPaginationRight} onClick={handelButtonRight}>
         RIGHT
       </button>
+      <div>
+        avg: {avgData} --
+        highst Sample: {highestSample} --
+        lowest Sample: {lowestSample} --
+      </div>
     </div>
   );
 };
