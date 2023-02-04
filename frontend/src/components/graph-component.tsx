@@ -20,10 +20,16 @@ import {
   GraphProps,
 } from "../types/graph-component-types";
 import ChartJs from "./chart-js-component";
-import AvgData from "./graphData/avg-data";
-import Highestsample from "./graphData/highest-sample";
-import LowestSample from "./graphData/lowest-sample";
+import AvgData from "./graph-data/avg-data";
+import Highestsample from "./graph-data/highest-sample";
+import LowestSample from "./graph-data/lowest-sample";
+import ButtonLeft from "./graph-functionality/button-left";
+import ButtonRight from "./graph-functionality/button-right";
+import ButtonStop from "./graph-functionality/stop-button";
+import ButtonPause from "./graph-functionality/pause-button";
+import ButtonStart from "./graph-functionality/stop-button copy";
 
+// Defult data for Chart-js components otherwise, it's falls.
 const defultGraphData: graphObj = {
   labels: [],
   datasets: [
@@ -34,7 +40,7 @@ const defultGraphData: graphObj = {
     },
   ],
 };
-// todo: type for props
+
 const Graph = (props: GraphProps) => {
   const [graphData, setGraphData] = useState<GraphData[] | []>([]);
   const [newData, setNewdata] = useState<GraphData[] | []>([]);
@@ -53,6 +59,7 @@ const Graph = (props: GraphProps) => {
   const [avgData, setAvgData] = useState<number>(0);
   const [highestSample, setHighestSample] = useState<number>(0);
   const [lowestSample, setLowestSample] = useState<number>(0);
+
   // Get all samples from DB ONLY at lodeing the page.
   useEffect(() => {
     axiosGetAllsamples("facebook").then((result) => {
@@ -136,6 +143,7 @@ const Graph = (props: GraphProps) => {
   }, [isRight]);
 
   // Handle requests to start/pause/stop/right/left.
+  // Start button.
   const handelButtonStart = () => {
     if (intervalId) {
       clearInterval(intervalId);
@@ -163,6 +171,7 @@ const Graph = (props: GraphProps) => {
     setIsPaginationRight(true);
     console.log("Start");
   };
+  // Pause button.
   const handelButtonPause = () => {
     clearInterval(intervalId);
 
@@ -175,6 +184,7 @@ const Graph = (props: GraphProps) => {
     setIsGraphLoad((prev: any) => !prev);
     console.log("Pause");
   };
+  // Stop button.
   const handelButtonStop = () => {
     setIsStartSample(false);
     setIsPauseSample(true);
@@ -190,6 +200,7 @@ const Graph = (props: GraphProps) => {
       console.log("saved!");
     });
   };
+  // right button.
   const handelButtonRight = () => {
     console.log("RIGHT");
     setIsRight((prev: any) => !prev);
@@ -205,6 +216,7 @@ const Graph = (props: GraphProps) => {
       setIsPaginationLeft(true);
     }
   };
+  // Left button.
   const handelButtonLeft = () => {
     console.log("left");
     setIsLeft((prev: any) => !prev);
@@ -220,28 +232,34 @@ const Graph = (props: GraphProps) => {
       setIsPaginationRight(true);
     }
   };
+
   return (
     <div>
       <ChartJs graphObj={graphObj} loading={loading} />
-      <button disabled={isStartSample} onClick={handelButtonStart}>
-        START
-      </button>
-      <button disabled={isPauseSample} onClick={handelButtonPause}>
-        PAUSE
-      </button>
-      <button disabled={isStopSample} onClick={handelButtonStop}>
-        STOP
-      </button>
-      <button disabled={isPaginationLeft} onClick={handelButtonLeft}>
-        LEFT
-      </button>
-      <button disabled={isPaginationRight} onClick={handelButtonRight}>
-        RIGHT
-      </button>
+      <ButtonStart
+        isStartSample={isStartSample}
+        handelButtonStart={handelButtonStart}
+      />
+      <ButtonPause
+        isPauseSample={isPauseSample}
+        handelButtonPause={handelButtonPause}
+      />
+      <ButtonStop
+        isStopSample={isStopSample}
+        handelButtonStop={handelButtonStop}
+      />
+      <ButtonLeft
+        isPaginationLeft={isPaginationLeft}
+        handelButtonLeft={handelButtonLeft}
+      />
+      <ButtonRight
+        isPaginationRight={isPaginationRight}
+        handelButtonRight={handelButtonRight}
+      />
       <div>
-        <AvgData avgData={avgData}/>
-        <Highestsample Highestsample={highestSample}/>
-        <LowestSample LowestSample={lowestSample}/>
+        <AvgData avgData={avgData} />
+        <Highestsample Highestsample={highestSample} />
+        <LowestSample LowestSample={lowestSample} />
       </div>
     </div>
   );

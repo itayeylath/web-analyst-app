@@ -12,17 +12,6 @@ import {
   PointElement,
 } from "chart.js";
 import {
-  axiosGetAllsamples,
-  axiosGetsample,
-  axiosPostSamples,
-} from "../services/axios/facebook-axios";
-import {
-  getRoundArr,
-  getSortArr,
-  getSortArrLeft,
-  getSortArrRight,
-} from "../utilities/sort-arr";
-import {
   CharJSProps,
   GraphData,
   GraphLabels,
@@ -41,6 +30,7 @@ ChartJS.register(
   PointElement
 );
 
+// Defult data for Chart-js components otherwise, it's falls.
 const defultGraphData: graphObj = {
   labels: [],
   datasets: [
