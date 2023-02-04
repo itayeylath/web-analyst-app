@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { axiosGetAddwebsample, axiosGetAllAddwebsamples, axiosPostAddwebSamples } from "../services/axios/addweb-axios";
 import {
   axiosPostFacebookSamples,
   axiosGetFacebooksample,
@@ -40,7 +41,7 @@ const AddGraph = () => {
         <input type="text" onChange={handelAddUrlChange} placeholder={addUrl} />
         <input type="text" onChange={handelAddRateChange} placeholder={addRate} />
         {isAddButton && (
-          <Graph decimalRound={2} sampleRate={1000} webName={"facebook"} sortValue={35} axiosGetAllsamples={axiosGetAllFacebooksamples} axiosGetsample={axiosGetFacebooksample} axiosPostSamples={axiosPostFacebookSamples}/>
+          <Graph decimalRound={2} sampleRate={1000} webName={addUrl} sortValue={35} axiosGetAllsamples={axiosGetAllAddwebsamples} axiosGetsample={axiosGetAddwebsample} axiosPostSamples={axiosPostAddwebSamples}/>
         )}
       </div>
     </div>
