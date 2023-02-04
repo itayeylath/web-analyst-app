@@ -16,8 +16,8 @@
   border: none;
 }
 
-.add-logo-btn:hover{
-    opacity: 50%;
+.add-logo-btn:hover {
+  opacity: 50%;
 }
 
 .add-logo {
@@ -33,7 +33,7 @@
 .add-url {
   width: 183px;
   height: 36px;
-
+  color: #ffffff;
   /* Inside auto layout */
   flex: none;
   order: 1;
@@ -53,26 +53,25 @@
   background-color: #101a33;
 }
 
-.add-rate{
-    width: 118px;
-    height: 36px;
-    
-    
-    /* Inside auto layout */
-    flex: none;
-    order: 2;
-    flex-grow: 0;
-    
-    box-sizing: border-box;
+.add-rate {
+  color: #ffffff;
+  width: 118px;
+  height: 36px;
 
-position: absolute;
-width: 118px;
-height: 35px;
-left: 248px;
-top: 4.5px;
+  /* Inside auto layout */
+  flex: none;
+  order: 2;
+  flex-grow: 0;
 
-border: 2px solid #29324F;
-border-radius: 4px;
-background-color: #101a33;
+  box-sizing: border-box;
 
+  position: absolute;
+  width: 118px;
+  height: 35px;
+  left: 248px;
+  top: 4.5px;
+
+  border: 2px solid #29324f;
+  border-radius: 4px;
+  background-color: #101a33;
 }

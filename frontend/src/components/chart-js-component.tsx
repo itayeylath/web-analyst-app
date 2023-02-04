@@ -55,7 +55,7 @@ const ChartJs = (props: CharJSProps) => {
     <div style={{ width: "500px", height: "200px" }}>
       {props.loading || loading ? (
         <ClipLoader
-          color={"#36d7b7"}
+          color={"#5FFAF1"}
           loading={props.loading}
           size={80}
           cssOverride={{}}

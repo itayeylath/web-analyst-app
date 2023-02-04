@@ -19,7 +19,7 @@ import ButtonStop from "./graph-functionality/stop-button";
 import ButtonPause from "./graph-functionality/pause-button";
 import ButtonStart from "./graph-functionality/stop-button copy";
 import ButtonEdit from "./graph-functionality/button-left copy";
-import AddGraph from "./add-graph";
+import "../styles/main.scss";
 
 // Defult data for Chart-js components otherwise, it's falls.
 const defultGraphData: graphObj = {
@@ -72,9 +72,10 @@ const Graph = (props: GraphProps) => {
         labels: labels || [],
         datasets: [
           {
-            label: "First Dataset",
+            label: "Sample",
             data: data,
-            backgroundColor: "red",
+            backgroundColor: "#5FFAF1",
+            
           },
         ],
       });
@@ -246,16 +247,21 @@ const Graph = (props: GraphProps) => {
   return (
     <div>
       <div className="graph-data">
+        <div className="graph-data-text">
+
+
         <AvgData avgData={avgData} />
         <Highestsample Highestsample={highestSample} />
         <LowestSample LowestSample={lowestSample} />
-      </div>
       <ButtonEdit
         isEditButtun={isEditButtun}
         handelButtonEdit={handelButtonEdit}
         handelRateChange={handelRateChange}
         rateValue={rateValue}
       />
+        </div>
+      </div>
+
       <ChartJs graphObj={graphObj} loading={loading} />
       <ButtonStart
         isStartSample={isStartSample}

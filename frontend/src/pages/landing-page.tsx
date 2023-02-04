@@ -28,7 +28,11 @@ import {
 import "../styles/landing-page.scss";
 import "../styles/main.scss";
 import LightSpinLogo from "../assets/lightspinLogo.png";
-
+import Google from "../assets/google.png";
+import Facebook from "../assets/facebook.png";
+import Amazon from "../assets/amazon.png";
+import Cnet from "../assets/cnet.png";
+import Twitter from "../assets/twitter.png";
 const LandingPage = () => {
   return (
     <div className="landing-page">
@@ -37,6 +41,11 @@ const LandingPage = () => {
       </div>
       <AddGraph />
       <div className="first-row">
+
+      <div className="google-logo">
+            <img src={Google} />
+          </div>
+
         <div className="google-div">
           <Graph
             decimalRound={2}
@@ -49,6 +58,10 @@ const LandingPage = () => {
           />
         </div>
 
+        <div className="cnet-logo">
+            <img src={Cnet} />
+          </div>
+
         <div className="cnet-div">
           <Graph
             decimalRound={2}
@@ -60,6 +73,11 @@ const LandingPage = () => {
             axiosPostSamples={axiosPostCnetSamples}
           />
         </div>
+
+        <div className="facebook-logo">
+            <img src={Facebook} />
+          </div>
+
         <div className="facebook-div">
           <Graph
             decimalRound={2}
@@ -73,9 +91,12 @@ const LandingPage = () => {
         </div>
       </div>
 
+      <div className="amazon-logo">
+            <img src={Amazon} />
+          </div>
+
       <div className="scond-row">
-        
-      <div className="amaozon-div">
+        <div className="amaozon-div">
           <Graph
             decimalRound={2}
             sampleRate={1000}
@@ -86,7 +107,11 @@ const LandingPage = () => {
             axiosPostSamples={axiosPostAmazonSamples}
           />
         </div>
-        
+
+        <div className="twitter-logo">
+            <img src={Twitter} />
+          </div>
+
         <div className="twitter-div">
           <Graph
             decimalRound={2}

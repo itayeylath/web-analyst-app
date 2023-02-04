@@ -1,7 +1,8 @@
 import { HighestsampleProps } from "../../types/types";
+import "../../styles/main.scss";
 
 const Highestsample = (props: HighestsampleProps) => {
-  return <div className="">highst: {props.Highestsample}</div>;
+  return <div className="letters">Highest {props.Highestsample}</div>;
 };
 
 export default Highestsample;

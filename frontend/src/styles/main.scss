@@ -1,3 +1,8 @@
+@font-face {
+  font-family: ineter;
+  src: url(../assets/Lato/Lato-Regular.ttf);
+}
+
 .first-row {
   display: flex;
   flex-direction: row;
@@ -12,6 +17,8 @@
   top: 159px;
 
   .google-div {
+    background: linear-gradient(180deg, #2b3451 0%, #1c243a 90.19%);
+    border-radius: 0px 0px 4px 4px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -27,6 +34,8 @@
   }
 
   .cnet-div {
+    background: linear-gradient(180deg, #2b3451 0%, #1c243a 90.19%);
+    border-radius: 0px 0px 4px 4px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -42,6 +51,8 @@
   }
 
   .facebook-div {
+    background: linear-gradient(180deg, #2b3451 0%, #1c243a 90.19%);
+    border-radius: 0px 0px 4px 4px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -71,6 +82,8 @@
   top: 570px;
 
   .amaozon-div {
+    background: linear-gradient(180deg, #2b3451 0%, #1c243a 90.19%);
+    border-radius: 0px 0px 4px 4px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -98,6 +111,8 @@
   }
 
   .twitter-div {
+    background: linear-gradient(180deg, #2b3451 0%, #1c243a 90.19%);
+    border-radius: 0px 0px 4px 4px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -119,7 +134,7 @@
 .graph-data {
   background: linear-gradient(180deg, #16213c 0%, #232d4a 100%);
   border-radius: 4px 4px 0px 0px;
-  width: 400px;
+  width: 421px;
   height: 50px;
 
   display: flex;
@@ -127,4 +142,105 @@
   align-items: center;
   padding: 0px;
   gap: 26px;
+
+  .graph-data-text {
+    color: #ffffff;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+
+    padding: 60px;
+    gap: 5px;
+    font-family: "Lato-Regular";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 20px;
+
+    .letters {
+      font-family: "Lato";
+      font-style: normal;
+      font-weight: 700;
+      line-height: 20px;
+
+      /* identical to box height, or 180% */
+      letter-spacing: -0.01em;
+      padding: 5px;
+      //   color: #ffffff;
+    }
+  }
+
+  .edit-logo-btn {
+    background: linear-gradient(180deg, #16213c 0%, #232d4a 100%);
+    border: none;
+  }
+
+  .pencil {
+    left: 67.88%;
+    right: 0%;
+    top: 0.1%;
+    bottom: 67.89%;
+    padding-left: 0px;
+  }
+  .pencil:hover {
+    opacity: 50%;
+  }
+}
+.add-rate-edit {
+  width: 30px;
+  height: 20px;
+  z-index: 1;
+  position: absolute;
+  /* Inside auto layout */
+  flex: none;
+  order: 2;
+  flex-grow: 0;
+
+  box-sizing: border-box;
+
+  border: 2px solid #29324f;
+  border-radius: 4px;
+  background-color: #101a33;
+  color: #ffffff;
+}
+.google-logo {
+  z-index: 1;
+  position: absolute;
+  width: 37px;
+  height: 37px;
+  left: 15px;
+  top: 4px;
+}
+
+.facebook-logo {
+  position: absolute;
+  width: 44px;
+  height: 44px;
+  left: 905px;
+  top: 1px;
+}
+.cnet-logo {
+  z-index: 1;
+  position: absolute;
+  width: 44px;
+  height: 44px;
+  left: 456px;
+  top: 1px;
+}
+.amazon-logo {
+    z-index: 1;
+    position: absolute;
+    width: 37px;
+    height: 37px;
+    left: 65px;
+    top: 585px;
+}
+.twitter-logo {
+  z-index: 1;
+  position: absolute;
+  width: 44px;
+  height: 44px;
+  left: 456px;
+  top: 1px;
 }
