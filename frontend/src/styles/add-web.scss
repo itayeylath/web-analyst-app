@@ -1,0 +1,78 @@
+.add-web-div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0px;
+  gap: 11px;
+
+  position: absolute;
+  width: 410px;
+  height: 43px;
+  left: 515px;
+  top: 69px;
+}
+.add-logo-btn {
+  background-color: #101a33;
+  border: none;
+}
+
+.add-logo-btn:hover{
+    opacity: 50%;
+}
+
+.add-logo {
+  width: 43px;
+  height: 43px;
+
+  /* Inside auto layout */
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+
+.add-url {
+  width: 183px;
+  height: 36px;
+
+  /* Inside auto layout */
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+
+  box-sizing: border-box;
+
+  position: absolute;
+  width: 183px;
+  height: 35px;
+  left: 54px;
+  top: 4.5px;
+
+  border: 2px solid #29324f;
+  border-radius: 4px;
+
+  background-color: #101a33;
+}
+
+.add-rate{
+    width: 118px;
+    height: 36px;
+    
+    
+    /* Inside auto layout */
+    flex: none;
+    order: 2;
+    flex-grow: 0;
+    
+    box-sizing: border-box;
+
+position: absolute;
+width: 118px;
+height: 35px;
+left: 248px;
+top: 4.5px;
+
+border: 2px solid #29324F;
+border-radius: 4px;
+background-color: #101a33;
+
+}

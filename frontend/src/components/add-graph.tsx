@@ -1,11 +1,8 @@
 import { useEffect, useState } from "react";
 import { axiosGetAddwebsample, axiosGetAllAddwebsamples, axiosPostAddwebSamples } from "../services/axios/addweb-axios";
-import {
-  axiosPostFacebookSamples,
-  axiosGetFacebooksample,
-  axiosGetAllFacebooksamples,
-} from "../services/axios/facebook-axios";
 import Graph from "./graph-component";
+import Add from "../assets/add.png"
+import "../styles/add-web.scss"
 
 const AddGraph = () => {
   const [addUrl, setAddUrl] = useState<string>("");
@@ -35,11 +32,13 @@ const AddGraph = () => {
     setAddRate(event.target.value);
   };
   return (
-    <div className="">
+    
+    <div className="add-web-div">
       <div>
-        <button onClick={handelAddButton}>add</button>
-        <input type="text" onChange={handelAddUrlChange} placeholder={addUrl} />
-        <input type="text" onChange={handelAddRateChange} placeholder={addRate} />
+        <button className="add-logo-btn" onClick={handelAddButton}><img className="add-logo" src={Add}/></button>
+        
+        <input className="add-url" type="text" onChange={handelAddUrlChange} placeholder={addUrl} />
+        <input className="add-rate" type="text" onChange={handelAddRateChange} placeholder={addRate} />
         {isAddButton && (
           <Graph decimalRound={2} sampleRate={1000} webName={addUrl} sortValue={35} axiosGetAllsamples={axiosGetAllAddwebsamples} axiosGetsample={axiosGetAddwebsample} axiosPostSamples={axiosPostAddwebSamples}/>
         )}

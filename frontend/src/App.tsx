@@ -3,8 +3,8 @@ import "./styles/App.css";
 
 const App = () => {
   return (
-    <div className="">
-      <LandingPage></LandingPage>
+    <div >
+      <LandingPage/>
     </div>
   );
 };
