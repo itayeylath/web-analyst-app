@@ -5,9 +5,6 @@
 git clone https://github.com/itayeylath/lightspin-home-assignment.git
 ```
 ```
-cd ..
-```
-```
 Create virtual environment: virtualenv myenv
 ```
 ```
