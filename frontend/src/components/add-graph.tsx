@@ -1,11 +1,22 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import {
+  axiosPostFacebookSamples,
+  axiosGetFacebooksample,
+  axiosGetAllFacebooksamples,
+} from "../services/axios/facebook-axios";
 import Graph from "./graph-component";
 
 const AddGraph = () => {
   const [addUrl, setAddUrl] = useState<string>("");
   const [addRate, setAddRate] = useState<string>("");
   const [isAddButton, setIsAddButton] = useState<boolean>(false);
+ 
+  useEffect(() => {
+    setAddUrl("url")
+    setAddRate("rate")
+  }, []);
 
+    
   // add button.
   const handelAddButton = () => {
     setIsAddButton((prev: any) => !prev);
@@ -26,15 +37,10 @@ const AddGraph = () => {
     <div className="">
       <div>
         <button onClick={handelAddButton}>add</button>
-        <input type="text" onChange={handelAddUrlChange} value={addUrl} />
-        <input type="text" onChange={handelAddRateChange} value={addRate} />
+        <input type="text" onChange={handelAddUrlChange} placeholder={addUrl} />
+        <input type="text" onChange={handelAddRateChange} placeholder={addRate} />
         {isAddButton && (
-          <Graph
-            decimalRound={2}
-            sampleRate={Number(addRate)}
-            webName={addUrl}
-            sortValue={35}
-          />
+          <Graph decimalRound={2} sampleRate={1000} webName={"facebook"} sortValue={35} axiosGetAllsamples={axiosGetAllFacebooksamples} axiosGetsample={axiosGetFacebooksample} axiosPostSamples={axiosPostFacebookSamples}/>
         )}
       </div>
     </div>

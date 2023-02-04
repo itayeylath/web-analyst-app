@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import {
-  axiosGetAllsamples,
-  axiosGetsample,
-  axiosPostSamples,
+  axiosPostFacebookSamples,
+  axiosGetFacebooksample,
+  axiosGetAllFacebooksamples,
 } from "../services/axios/facebook-axios";
 import {
   getAvgSample,
@@ -63,7 +63,7 @@ const Graph = (props: GraphProps) => {
   useEffect(() => {
     const roundRate = props.sampleRate / 1000;
     setSrateValue(roundRate.toString());
-    axiosGetAllsamples("facebook").then((result) => {
+    props.axiosGetAllsamples("facebook").then((result: any) => {
       setIndex(result.length);
       setGraphData([...result]);
       const highstAndLowest = getHighestAndLowestSamples(result);
@@ -151,7 +151,7 @@ const Graph = (props: GraphProps) => {
     }
     setIsStartSample(true);
     let sampleInterval = setInterval(() => {
-      axiosGetsample(props.webName).then((result) => {
+      props.axiosGetsample(props.webName).then((result: any) => {
         const highstAndLowest = isHighestOrLowestSamples(
           result,
           highestSample,
@@ -196,7 +196,7 @@ const Graph = (props: GraphProps) => {
     setIsGraphLoad((prev: any) => !prev);
     console.log("Stop");
     setLoading(true);
-    axiosPostSamples({ arr: newData }).then((result) => {
+    props.axiosPostSamples({ arr: newData }).then((result:any) => {
       setLoading(false);
       console.log("saved!");
     });
@@ -289,5 +289,4 @@ const Graph = (props: GraphProps) => {
     </div>
   );
 };
-
 export default Graph;

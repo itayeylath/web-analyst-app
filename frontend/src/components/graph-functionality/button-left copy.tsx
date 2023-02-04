@@ -7,6 +7,7 @@ const ButtonEdit = (props: ButtonEditProps) => {
       <button  onClick={props.handelButtonEdit}>
         edit
 
+      </button>
       {
         props.isEditButtun && (
         <input
@@ -15,7 +16,6 @@ const ButtonEdit = (props: ButtonEditProps) => {
         value={props.rateValue}
       />)
       }
-      </button>
     </div>
   );
 };

@@ -17,6 +17,11 @@ export interface GraphProps {
   sampleRate: number;
   webName: string;
   sortValue: number;
+  axiosGetAllsamples: any;
+  axiosGetsample: any;
+  axiosPostSamples: any
+
+
 }
 export interface CharJSProps {
   graphObj: graphObj;
