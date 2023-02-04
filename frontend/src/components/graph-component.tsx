@@ -17,7 +17,7 @@ import ButtonLeft from "./graph-functionality/button-left";
 import ButtonRight from "./graph-functionality/button-right";
 import ButtonStop from "./graph-functionality/stop-button";
 import ButtonPause from "./graph-functionality/pause-button";
-import ButtonStart from "./graph-functionality/stop-start";
+import ButtonStart from "./graph-functionality/start-button";
 import ButtonEdit from "./graph-functionality/button-edit";
 import "../styles/main.scss";
 
@@ -248,8 +248,6 @@ const Graph = (props: GraphProps) => {
     <div>
       <div className="graph-data">
         <div className="graph-data-text">
-
-
         <AvgData avgData={avgData} />
         <Highestsample Highestsample={highestSample} />
         <LowestSample LowestSample={lowestSample} />

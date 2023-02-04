@@ -36,11 +36,14 @@ const AddGraph = () => {
     <div className="add-web-div">
       <div>
         <button className="add-logo-btn" onClick={handelAddButton}><img className="add-logo" src={Add}/></button>
-        
         <input className="add-url" type="text" onChange={handelAddUrlChange} placeholder={addUrl} />
         <input className="add-rate" type="text" onChange={handelAddRateChange} placeholder={addRate} />
         {isAddButton && (
-          <Graph decimalRound={2} sampleRate={1000} webName={addUrl} sortValue={35} axiosGetAllsamples={axiosGetAllAddwebsamples} axiosGetsample={axiosGetAddwebsample} axiosPostSamples={axiosPostAddwebSamples}/>
+          <div className="scond-row">
+          <div className="add-web-div">
+            <Graph decimalRound={2} sampleRate={1000} webName={addUrl} sortValue={35} axiosGetAllsamples={axiosGetAllAddwebsamples} axiosGetsample={axiosGetAddwebsample} axiosPostSamples={axiosPostAddwebSamples}/>
+          </div>
+          </div>
         )}
       </div>
     </div>
