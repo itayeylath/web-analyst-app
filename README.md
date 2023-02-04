@@ -1,5 +1,46 @@
 # Lightspin - Home Assignment
 ## Setup Instructions
+### Backend
+```
+git clone https://github.com/itayeylath/lightspin-home-assignment.git
+```
+```
+cd ..
+```
+```
+Create virtual environment: virtualenv myenv
+```
+```
+cd /myenv/bin
+```
+```
+ source ./activate
+```
+```
+cd ..
+```
+```
+cd ..
+```
+```
+ pip install -r requirements.txt
+```
+```
+cd lightspin-home-assignment/backend
+```
+```
+ python manage.py runserver
+```
+### Frontend
+```
+cd lightspin-home-assignment/frontend
+```
+```
+npm install
+```
+```
+npm start
+```
 
 ## Links
 
