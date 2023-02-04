@@ -5,10 +5,13 @@
 git clone https://github.com/itayeylath/lightspin-home-assignment.git
 ```
 ```
-Create virtual environment: virtualenv myenv
+pip install virtualenv
 ```
 ```
-cd /myenv/bin
+virtualenv myenv
+```
+```
+cd myenv/bin
 ```
 ```
  source ./activate
@@ -23,14 +26,14 @@ cd ..
  pip install -r requirements.txt
 ```
 ```
-cd lightspin-home-assignment/backend
+cd backend
 ```
 ```
  python manage.py runserver
 ```
 ### Frontend
 ```
-cd lightspin-home-assignment/frontend
+cd frontend
 ```
 ```
 npm install
