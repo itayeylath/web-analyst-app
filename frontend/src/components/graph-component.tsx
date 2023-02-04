@@ -1,10 +1,5 @@
 import { useEffect, useState } from "react";
 import {
-  axiosPostFacebookSamples,
-  axiosGetFacebooksample,
-  axiosGetAllFacebooksamples,
-} from "../services/axios/facebook-axios";
-import {
   getAvgSample,
   getHighestAndLowestSamples,
   getRoundArr,
@@ -63,7 +58,7 @@ const Graph = (props: GraphProps) => {
   useEffect(() => {
     const roundRate = props.sampleRate / 1000;
     setSrateValue(roundRate.toString());
-    props.axiosGetAllsamples("facebook").then((result: any) => {
+    props.axiosGetAllsamples(props.webName).then((result: any) => {
       setIndex(result.length);
       setGraphData([...result]);
       const highstAndLowest = getHighestAndLowestSamples(result);
@@ -283,9 +278,6 @@ const Graph = (props: GraphProps) => {
         <LowestSample LowestSample={lowestSample} />
       </div>
 
-      <div>
-        <AddGraph />
-      </div>
     </div>
   );
 };
