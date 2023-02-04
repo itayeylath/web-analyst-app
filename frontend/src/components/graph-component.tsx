@@ -58,12 +58,11 @@ const Graph = (props: GraphProps) => {
   const [lowestSample, setLowestSample] = useState<number>(0);
   const [isEditButtun, setIsEditButtun] = useState<boolean>(false);
   const [rateValue, setSrateValue] = useState<string>("");
-  
 
   // Get all samples from DB ONLY at lodeing the page.
   useEffect(() => {
-    const roundRate = props.sampleRate/1000
-    setSrateValue((roundRate.toString()))
+    const roundRate = props.sampleRate / 1000;
+    setSrateValue(roundRate.toString());
     axiosGetAllsamples("facebook").then((result) => {
       setIndex(result.length);
       setGraphData([...result]);
@@ -164,7 +163,7 @@ const Graph = (props: GraphProps) => {
         setNewdata((oldArr: any) => [...oldArr, result]);
         setIsGraphLoad((prev: any) => !prev);
       });
-    }, Number(rateValue)* 1000);
+    }, Number(rateValue) * 1000);
 
     setIntervalId(sampleInterval);
     setIsPauseSample(false);
@@ -236,24 +235,27 @@ const Graph = (props: GraphProps) => {
   };
   // Edit button.
   const handelButtonEdit = () => {
-    setSrateValue((rateValue.toString()))
-    setIsEditButtun((prev: any) => !prev)
+    setSrateValue(rateValue.toString());
+    setIsEditButtun((prev: any) => !prev);
   };
-  const handelRateChange = (event:any) => {
-    let value = event.target.value
-    
-      if (typeof(value) === "number"){
+  const handelRateChange = (event: any) => {
+    let value = event.target.value;
 
-        console.log("change",event.target.value)
-      }
-    
-    setSrateValue(event.target.value)
+    if (typeof value === "number") {
+      console.log("change", event.target.value);
+    }
+
+    setSrateValue(event.target.value);
   };
-    
 
   return (
     <div>
-      <ButtonEdit isEditButtun={isEditButtun} handelButtonEdit={handelButtonEdit} handelRateChange={handelRateChange} rateValue={rateValue}  />
+      <ButtonEdit
+        isEditButtun={isEditButtun}
+        handelButtonEdit={handelButtonEdit}
+        handelRateChange={handelRateChange}
+        rateValue={rateValue}
+      />
       <ChartJs graphObj={graphObj} loading={loading} />
       <ButtonStart
         isStartSample={isStartSample}
@@ -281,13 +283,9 @@ const Graph = (props: GraphProps) => {
         <LowestSample LowestSample={lowestSample} />
       </div>
 
-    <div>
-    <AddGraph/>
-
-    </div>
-
-    
-
+      <div>
+        <AddGraph />
+      </div>
     </div>
   );
 };

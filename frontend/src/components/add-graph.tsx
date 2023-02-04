@@ -1,12 +1,10 @@
 import { useState } from "react";
-import { AddGraphProps } from "../types/types";
 import Graph from "./graph-component";
 
-const AddGraph = (props: any) => {
+const AddGraph = () => {
   const [addUrl, setAddUrl] = useState<string>("");
   const [addRate, setAddRate] = useState<string>("");
   const [isAddButton, setIsAddButton] = useState<boolean>(false);
-
 
   // add button.
   const handelAddButton = () => {
@@ -26,21 +24,20 @@ const AddGraph = (props: any) => {
   };
   return (
     <div className="">
-      
       <div>
-      <button onClick={handelAddButton}>add</button>
-      <input type="text" onChange={handelAddUrlChange} value={addUrl} />
-      <input type="text" onChange={handelAddRateChange} value={addRate} />
-     {(isAddButton &&
-        
-        <Graph decimalRound={2} sampleRate={1000} webName={"facebook"} sortValue={35}/>
+        <button onClick={handelAddButton}>add</button>
+        <input type="text" onChange={handelAddUrlChange} value={addUrl} />
+        <input type="text" onChange={handelAddRateChange} value={addRate} />
+        {isAddButton && (
+          <Graph
+            decimalRound={2}
+            sampleRate={Number(addRate)}
+            webName={addUrl}
+            sortValue={35}
+          />
         )}
-      
       </div>
-    
     </div>
-
-    
   );
 };
 export default AddGraph;
