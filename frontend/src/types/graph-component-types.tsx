@@ -23,5 +23,11 @@ export interface CharJSProps {
   loading: boolean
 }
 export interface AvgProps {
-  avg: number
+  avgData: number
+}
+export interface HighestsampleProps {
+  Highestsample: number
+}
+export interface LowestSampleProps {
+  LowestSample: number
 }

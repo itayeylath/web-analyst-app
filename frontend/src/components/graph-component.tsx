@@ -20,6 +20,9 @@ import {
   GraphProps,
 } from "../types/graph-component-types";
 import ChartJs from "./chart-js-component";
+import AvgData from "./graphData/avg-data";
+import Highestsample from "./graphData/highest-sample";
+import LowestSample from "./graphData/lowest-sample";
 
 const defultGraphData: graphObj = {
   labels: [],
@@ -55,11 +58,11 @@ const Graph = (props: GraphProps) => {
     axiosGetAllsamples("facebook").then((result) => {
       setIndex(result.length);
       setGraphData([...result]);
-      const highstAndLowest = getHighestAndLowestSamples(result) 
-      setLowestSample(highstAndLowest.lowesest)
-      setHighestSample(highstAndLowest.highest)
+      const highstAndLowest = getHighestAndLowestSamples(result);
+      setLowestSample(highstAndLowest.lowesest);
+      setHighestSample(highstAndLowest.highest);
       const avg = getAvgSample(result);
-      setAvgData(avg)
+      setAvgData(avg);
       const data = getSortArr(result, props.sortValue);
       const labels = getRoundArr(data, props.decimalRound);
       setGraphObj({
@@ -79,7 +82,7 @@ const Graph = (props: GraphProps) => {
   useEffect(() => {
     setIndex(graphData.length);
     const avg = getAvgSample(graphData);
-    setAvgData(avg)
+    setAvgData(avg);
     const data = getSortArr(graphData, props.sortValue);
     const labels = getRoundArr(data, props.decimalRound);
     setGraphObj({
@@ -140,9 +143,13 @@ const Graph = (props: GraphProps) => {
     setIsStartSample(true);
     let sampleInterval = setInterval(() => {
       axiosGetsample(props.webName).then((result) => {
-        const highstAndLowest = isHighestOrLowestSamples(result,highestSample,lowestSample) 
-        setLowestSample(highstAndLowest.lowesest)
-        setHighestSample(highstAndLowest.highest)
+        const highstAndLowest = isHighestOrLowestSamples(
+          result,
+          highestSample,
+          lowestSample
+        );
+        setLowestSample(highstAndLowest.lowesest);
+        setHighestSample(highstAndLowest.highest);
         setGraphData((oldArr: any) => [...oldArr, result]);
         setNewdata((oldArr: any) => [...oldArr, result]);
         setIsGraphLoad((prev: any) => !prev);
@@ -232,9 +239,9 @@ const Graph = (props: GraphProps) => {
         RIGHT
       </button>
       <div>
-        avg: {avgData} --
-        highst Sample: {highestSample} --
-        lowest Sample: {lowestSample} --
+        <AvgData avgData={avgData}/>
+        <Highestsample Highestsample={highestSample}/>
+        <LowestSample LowestSample={lowestSample}/>
       </div>
     </div>
   );

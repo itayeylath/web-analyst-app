@@ -52,7 +52,7 @@ export const getAvgSample = (arr: GraphData[]) => {
   }
   const avg = sum / arr.length;
   if (Number.isNaN(avg)) {
-      return 0;
+    return 0;
   } else {
     const roundNum = Number(Math.round(Number(avg + "e" + 2)) + "e-" + 2);
     return roundNum;
@@ -60,48 +60,51 @@ export const getAvgSample = (arr: GraphData[]) => {
 };
 
 export const getHighestAndLowestSamples = (arr: GraphData[]) => {
-  let min = 100
-  let max = 0
-     for (let i = 0; i < arr.length; i++) {
-      let num = Number(arr[i])
-      if (i===0){
-        min = num
-        max = num
-      } else {
-        if (num<min){
-          min = num
-        }
-        if (num>max){
-          max = num
-        }
+  let min = 100;
+  let max = 0;
+  for (let i = 0; i < arr.length; i++) {
+    let num = Number(arr[i]);
+    if (i === 0) {
+      min = num;
+      max = num;
+    } else {
+      if (num < min) {
+        min = num;
       }
-     }
-    const roundMax = Number(Math.round(Number(max + "e" + 2)) + "e-" + 2);
-    const roundMin = Number(Math.round(Number(min + "e" + 2)) + "e-" + 2);
-    const highstAndLowest = {
-      "highest": roundMax, 
-      "lowesest": roundMin
+      if (num > max) {
+        max = num;
+      }
     }
-    return highstAndLowest;
+  }
+  const roundMax = Number(Math.round(Number(max + "e" + 2)) + "e-" + 2);
+  const roundMin = Number(Math.round(Number(min + "e" + 2)) + "e-" + 2);
+  const highstAndLowest = {
+    highest: roundMax,
+    lowesest: roundMin,
+  };
+  return highstAndLowest;
+};
+
+export const isHighestOrLowestSamples = (
+  sample: any,
+  highest: number,
+  lowest: number
+) => {
+  let min = lowest;
+  let max = highest;
+
+  if (Number(sample) < lowest) {
+    min = Number(sample);
+  }
+  if (Number(sample) > highest) {
+    max = Number(sample);
   }
 
-  export const isHighestOrLowestSamples = (sample: any, highest: number, lowest:number) => {
-    let min = lowest
-    let max = highest
-    
-          if (Number(sample)<lowest){
-            min = Number(sample)
-          }
-          if (Number(sample)>highest){
-            max = Number(sample)
-          }
-        
-       
-      const roundMin = Number(Math.round(Number(min + "e" + 2)) + "e-" + 2);
-      const roundMax = Number(Math.round(Number(max + "e" + 2)) + "e-" + 2);
-      const highstAndLowest = {
-        "highest": roundMax, 
-        "lowesest": roundMin
-      }
-      return highstAndLowest;
-    }
+  const roundMin = Number(Math.round(Number(min + "e" + 2)) + "e-" + 2);
+  const roundMax = Number(Math.round(Number(max + "e" + 2)) + "e-" + 2);
+  const highstAndLowest = {
+    highest: roundMax,
+    lowesest: roundMin,
+  };
+  return highstAndLowest;
+};
