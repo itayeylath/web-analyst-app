@@ -17,7 +17,7 @@ import {
   GraphLabels,
   graphObj,
   GraphProps,
-} from "../types/graph-component-types";
+} from "../types/types";
 import { AnyARecord } from "dns";
 
 ChartJS.register(
@@ -43,9 +43,9 @@ const defultGraphData: graphObj = {
 };
 
 const ChartJs = (props: CharJSProps) => {
-   // Loding component when lodeing the page.
-   const [loading, setLoading] = useState<boolean>(false);
-   useEffect(() => {
+  // Loding component when lodeing the page.
+  const [loading, setLoading] = useState<boolean>(false);
+  useEffect(() => {
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
@@ -53,7 +53,7 @@ const ChartJs = (props: CharJSProps) => {
   }, []);
   return (
     <div style={{ width: "500px", height: "200px" }}>
-      {props.loading || loading? (
+      {props.loading || loading ? (
         <ClipLoader
           color={"#36d7b7"}
           loading={props.loading}

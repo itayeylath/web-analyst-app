@@ -51,3 +51,9 @@ export interface ButtonStartProps {
   isStartSample: boolean;
   handelButtonStart: any;
 }
+export interface ButtonEditProps {
+  handelButtonEdit: any;
+  handelRateChange: any,
+  rateValue: string,
+  isEditButtun: boolean
+}

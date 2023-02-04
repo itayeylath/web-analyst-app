@@ -1,4 +1,4 @@
-import { ButtonRightProps } from "../../types/graph-component-types";
+import { ButtonRightProps } from "../../types/types";
 
 const ButtonRight = (props: ButtonRightProps) => {
   return (

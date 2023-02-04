@@ -13,12 +13,7 @@ import {
   getSortArrRight,
   isHighestOrLowestSamples,
 } from "../utilities/sort-arr";
-import {
-  GraphData,
-  GraphLabels,
-  graphObj,
-  GraphProps,
-} from "../types/graph-component-types";
+import { GraphData, GraphLabels, graphObj, GraphProps } from "../types/types";
 import ChartJs from "./chart-js-component";
 import AvgData from "./graph-data/avg-data";
 import Highestsample from "./graph-data/highest-sample";
@@ -28,6 +23,7 @@ import ButtonRight from "./graph-functionality/button-right";
 import ButtonStop from "./graph-functionality/stop-button";
 import ButtonPause from "./graph-functionality/pause-button";
 import ButtonStart from "./graph-functionality/stop-button copy";
+import ButtonEdit from "./graph-functionality/button-left copy";
 
 // Defult data for Chart-js components otherwise, it's falls.
 const defultGraphData: graphObj = {
@@ -59,9 +55,12 @@ const Graph = (props: GraphProps) => {
   const [avgData, setAvgData] = useState<number>(0);
   const [highestSample, setHighestSample] = useState<number>(0);
   const [lowestSample, setLowestSample] = useState<number>(0);
-
+  const [isEditButtun, setIsEditButtun] = useState<boolean>(false);
+  const [rateValue, setSrateValue] = useState<string>("");
   // Get all samples from DB ONLY at lodeing the page.
   useEffect(() => {
+    const roundRate = props.sampleRate/1000
+    setSrateValue((roundRate.toString()))
     axiosGetAllsamples("facebook").then((result) => {
       setIndex(result.length);
       setGraphData([...result]);
@@ -142,7 +141,7 @@ const Graph = (props: GraphProps) => {
     });
   }, [isRight]);
 
-  // Handle requests to start/pause/stop/right/left.
+  // Handle requests to start/pause/stop/right/left/edit.
   // Start button.
   const handelButtonStart = () => {
     if (intervalId) {
@@ -162,7 +161,7 @@ const Graph = (props: GraphProps) => {
         setNewdata((oldArr: any) => [...oldArr, result]);
         setIsGraphLoad((prev: any) => !prev);
       });
-    }, props.sampleRate);
+    }, Number(rateValue)* 1000);
 
     setIntervalId(sampleInterval);
     setIsPauseSample(false);
@@ -232,9 +231,25 @@ const Graph = (props: GraphProps) => {
       setIsPaginationRight(true);
     }
   };
+  // Edit button..
+  const handelButtonEdit = () => {
+    setSrateValue((rateValue.toString()))
+    setIsEditButtun((prev: any) => !prev)
+  };
+  const handelRateChange = (event:any) => {
+    let value = event.target.value
+    
+      if (typeof(value) === "number"){
+
+        console.log("change",event.target.value)
+      }
+    
+    setSrateValue(event.target.value)
+  };
 
   return (
     <div>
+      <ButtonEdit isEditButtun={isEditButtun} handelButtonEdit={handelButtonEdit} handelRateChange={handelRateChange} rateValue={rateValue}  />
       <ChartJs graphObj={graphObj} loading={loading} />
       <ButtonStart
         isStartSample={isStartSample}

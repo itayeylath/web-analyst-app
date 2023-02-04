@@ -1,4 +1,4 @@
-import { GraphData } from "../types/graph-component-types";
+import { GraphData } from "../types/types";
 
 export const getSortArr = (arr: GraphData[], sortValue: number) => {
   if (arr.length > sortValue) {

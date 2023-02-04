@@ -1,10 +1,9 @@
-import { ButtonStartProps } from "../../types/graph-component-types";
-
+import { ButtonStartProps } from "../../types/types";
 
 const ButtonStart = (props: ButtonStartProps) => {
   return (
     <div className="">
-  <button disabled={props.isStartSample} onClick={props.handelButtonStart}>
+      <button disabled={props.isStartSample} onClick={props.handelButtonStart}>
         START
       </button>
     </div>
