@@ -194,12 +194,12 @@ const Graph = (props: GraphProps) => {
     console.log("RIGHT");
     setIsRight((prev: any) => !prev);
     setIsGraphLoad((prev: any) => !prev);
-    if (index + 10 < graphData.length) {
+    if (index + 10 > graphData.length) {
       setIsPaginationRight(false);
     } else {
       setIsPaginationRight(true);
     }
-    if (index - 10 > 0) {
+    if (index - 10 < 0) {
       setIsPaginationLeft(false);
     } else {
       setIsPaginationLeft(true);
@@ -209,12 +209,12 @@ const Graph = (props: GraphProps) => {
     console.log("left");
     setIsLeft((prev: any) => !prev);
     setIsGraphLoad((prev: any) => !prev);
-    if (index - 10 > 0) {
+    if (index - 10 < 0) {
       setIsPaginationLeft(false);
     } else {
       setIsPaginationLeft(true);
     }
-    if (index + 10 > 0) {
+    if (index + 10 > graphData.length) {
       setIsPaginationRight(false);
     } else {
       setIsPaginationRight(true);
