@@ -56,4 +56,7 @@ export interface ButtonEditProps {
   handelRateChange: any,
   rateValue: string,
   isEditButtun: boolean
+}export interface AddGraphProps {
+  handelAddButton: any,
+  isAddButton: boolean
 }

@@ -24,6 +24,7 @@ import ButtonStop from "./graph-functionality/stop-button";
 import ButtonPause from "./graph-functionality/pause-button";
 import ButtonStart from "./graph-functionality/stop-button copy";
 import ButtonEdit from "./graph-functionality/button-left copy";
+import AddGraph from "./add-graph";
 
 // Defult data for Chart-js components otherwise, it's falls.
 const defultGraphData: graphObj = {
@@ -57,6 +58,8 @@ const Graph = (props: GraphProps) => {
   const [lowestSample, setLowestSample] = useState<number>(0);
   const [isEditButtun, setIsEditButtun] = useState<boolean>(false);
   const [rateValue, setSrateValue] = useState<string>("");
+  
+
   // Get all samples from DB ONLY at lodeing the page.
   useEffect(() => {
     const roundRate = props.sampleRate/1000
@@ -231,7 +234,7 @@ const Graph = (props: GraphProps) => {
       setIsPaginationRight(true);
     }
   };
-  // Edit button..
+  // Edit button.
   const handelButtonEdit = () => {
     setSrateValue((rateValue.toString()))
     setIsEditButtun((prev: any) => !prev)
@@ -246,6 +249,7 @@ const Graph = (props: GraphProps) => {
     
     setSrateValue(event.target.value)
   };
+    
 
   return (
     <div>
@@ -276,6 +280,14 @@ const Graph = (props: GraphProps) => {
         <Highestsample Highestsample={highestSample} />
         <LowestSample LowestSample={lowestSample} />
       </div>
+
+    <div>
+    <AddGraph/>
+
+    </div>
+
+    
+
     </div>
   );
 };
