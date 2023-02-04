@@ -57,7 +57,7 @@ const ChartJs = (props: CharJSProps) => {
         <ClipLoader
           color={"#36d7b7"}
           loading={props.loading}
-          size={150}
+          size={80}
           cssOverride={{}}
         />
       ) : (

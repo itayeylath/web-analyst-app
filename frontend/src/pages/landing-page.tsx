@@ -25,73 +25,80 @@ import {
   axiosGetTwittersample,
   axiosPostTwitterSamples,
 } from "../services/axios/twitter-axios";
-import "../styles/landing-page.scss"
-import LightSpinLogo from "../assets/lightspinLogo.png"
+import "../styles/landing-page.scss";
+import "../styles/main.scss";
+import LightSpinLogo from "../assets/lightspinLogo.png";
 
 const LandingPage = () => {
   return (
     <div className="landing-page">
-
       <div className="light-spin-logo">
-        <img src={LightSpinLogo}/>
+        <img src={LightSpinLogo} />
+      </div>
+      <AddGraph />
+      <div className="first-row">
+        <div className="google-div">
+          <Graph
+            decimalRound={2}
+            sampleRate={1000}
+            webName={"google"}
+            sortValue={35}
+            axiosGetAllsamples={axiosGetAllGooglesamples}
+            axiosGetsample={axiosGetGooglesample}
+            axiosPostSamples={axiosPostGoogleSamples}
+          />
+        </div>
+
+        <div className="cnet-div">
+          <Graph
+            decimalRound={2}
+            sampleRate={1000}
+            webName={"cnet"}
+            sortValue={35}
+            axiosGetAllsamples={axiosGetAllCnetsamples}
+            axiosGetsample={axiosGetCnetsample}
+            axiosPostSamples={axiosPostCnetSamples}
+          />
+        </div>
+        <div className="facebook-div">
+          <Graph
+            decimalRound={2}
+            sampleRate={1000}
+            webName={"facebook"}
+            sortValue={35}
+            axiosGetAllsamples={axiosGetAllFacebooksamples}
+            axiosGetsample={axiosGetFacebooksample}
+            axiosPostSamples={axiosPostFacebookSamples}
+          />
+        </div>
       </div>
 
-      
-      <div>
-        <AddGraph />
+      <div className="scond-row">
+        
+      <div className="amaozon-div">
+          <Graph
+            decimalRound={2}
+            sampleRate={1000}
+            webName={"amazon"}
+            sortValue={35}
+            axiosGetAllsamples={axiosGetAllAmazonsamples}
+            axiosGetsample={axiosGetAmazonsample}
+            axiosPostSamples={axiosPostAmazonSamples}
+          />
+        </div>
+        
+        <div className="twitter-div">
+          <Graph
+            decimalRound={2}
+            sampleRate={1000}
+            webName={"twitter"}
+            sortValue={35}
+            axiosGetAllsamples={axiosGetAllTwittersamples}
+            axiosGetsample={axiosGetTwittersample}
+            axiosPostSamples={axiosPostTwitterSamples}
+          />
+        </div>
       </div>
-      
-     
-      <Graph
-        decimalRound={2}
-        sampleRate={1000}
-        webName={"google"}
-        sortValue={35}
-        axiosGetAllsamples={axiosGetAllGooglesamples}
-        axiosGetsample={axiosGetGooglesample}
-        axiosPostSamples={axiosPostGoogleSamples}
-      />
-      Facebook
-      <Graph
-        decimalRound={2}
-        sampleRate={1000}
-        webName={"facebook"}
-        sortValue={35}
-        axiosGetAllsamples={axiosGetAllFacebooksamples}
-        axiosGetsample={axiosGetFacebooksample}
-        axiosPostSamples={axiosPostFacebookSamples}
-      />
-      Twitter
-      <Graph
-        decimalRound={2}
-        sampleRate={1000}
-        webName={"twitter"}
-        sortValue={35}
-        axiosGetAllsamples={axiosGetAllTwittersamples}
-        axiosGetsample={axiosGetTwittersample}
-        axiosPostSamples={axiosPostTwitterSamples}
-      />
-      Cnet
-      <Graph
-        decimalRound={2}
-        sampleRate={1000}
-        webName={"cnet"}
-        sortValue={35}
-        axiosGetAllsamples={axiosGetAllCnetsamples}
-        axiosGetsample={axiosGetCnetsample}
-        axiosPostSamples={axiosPostCnetSamples}
-      />
-      Amazon
-      <Graph
-        decimalRound={2}
-        sampleRate={1000}
-        webName={"amazon"}
-        sortValue={35}
-        axiosGetAllsamples={axiosGetAllAmazonsamples}
-        axiosGetsample={axiosGetAmazonsample}
-        axiosPostSamples={axiosPostAmazonSamples}
-      />
-      
     </div>
   );
 };

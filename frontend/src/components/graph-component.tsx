@@ -191,7 +191,7 @@ const Graph = (props: GraphProps) => {
     setIsGraphLoad((prev: any) => !prev);
     console.log("Stop");
     setLoading(true);
-    props.axiosPostSamples({ arr: newData }).then((result:any) => {
+    props.axiosPostSamples({ arr: newData }).then((result: any) => {
       setLoading(false);
       console.log("saved!");
     });
@@ -245,6 +245,11 @@ const Graph = (props: GraphProps) => {
 
   return (
     <div>
+      <div className="graph-data">
+        <AvgData avgData={avgData} />
+        <Highestsample Highestsample={highestSample} />
+        <LowestSample LowestSample={lowestSample} />
+      </div>
       <ButtonEdit
         isEditButtun={isEditButtun}
         handelButtonEdit={handelButtonEdit}
@@ -272,12 +277,6 @@ const Graph = (props: GraphProps) => {
         isPaginationRight={isPaginationRight}
         handelButtonRight={handelButtonRight}
       />
-      <div>
-        <AvgData avgData={avgData} />
-        <Highestsample Highestsample={highestSample} />
-        <LowestSample LowestSample={lowestSample} />
-      </div>
-
     </div>
   );
 };
