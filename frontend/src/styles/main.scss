@@ -204,6 +204,53 @@
   background-color: #101a33;
   color: #ffffff;
 }
+
+.left-img {
+  width: 37px;
+  height: 37px;
+  left: 37px;
+  top: 120px;
+
+  background: #0f1422;
+  border-radius: 44px;
+}
+.left {
+  z-index: 1;
+  position: absolute;
+  // width: 3px;
+  background: none;
+  border: none;
+  top: 139px;
+}
+
+.left:hover {
+  opacity: 50%;
+}
+
+.right-img {
+  width: 37px;
+  height: 37px;
+left: 37px;
+  top: 500px;
+
+  background: #0e1425;
+  border-radius: 44px;
+}
+.right {
+  z-index: 1;
+ position: absolute;
+  // width: 3px;
+  background: none;
+  border: none;
+//  left: 250px;
+   top: 139px;
+   padding-left: 189px;
+}
+
+.right-img:hover {
+  opacity: 50%;
+}
+
 .google-logo {
   z-index: 1;
   position: absolute;
@@ -229,12 +276,12 @@
   top: 1px;
 }
 .amazon-logo {
-    z-index: 1;
-    position: absolute;
-    width: 37px;
-    height: 37px;
-    left: 65px;
-    top: 585px;
+  z-index: 1;
+  position: absolute;
+  width: 37px;
+  height: 37px;
+  left: 65px;
+  top: 585px;
 }
 .twitter-logo {
   z-index: 1;
@@ -244,3 +291,82 @@
   left: 456px;
   top: 1px;
 }
+
+.graph-buttons-div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  padding-right: 125px;
+  gap: 25px;
+
+  left: 50px;
+  top: 80px;
+}
+
+.start-img {
+    width: 37px;
+    height: 37px;
+    left: 37px;
+    top: 120px;
+  
+    background: #0e1425;
+    border-radius: 44px;
+  }
+  .start {
+    z-index: 1;
+    position: absolute;
+    // width: 3px;
+    background: none;
+    border: none;
+    padding-right: 40px;
+    top: 140px;
+  }
+  .start-img:hover {
+    opacity: 50%;
+  }
+
+  .stop-img {
+    width: 37px;
+    height: 37px;
+    left: 37px;
+    top: 120px;
+  
+    background: #0e1425;
+    border-radius: 44px;
+  }
+  .stop {
+    z-index: 1;
+    position: absolute;
+    // width: 3px;
+    background: none;
+    border: none;
+    padding-left: 30px;
+    top: 140px;
+  }
+  .stop-img:hover {
+    opacity: 50%;
+  }
+  
+  .pause-img {
+    width: 37px;
+    height: 37px;
+    left: 37px;
+    top: 120px;
+  
+    background: #0e1425;
+    border-radius: 44px;
+  }
+  .pause {
+    z-index: 1;
+    position: absolute;
+    // width: 3px;
+    background: none;
+    border: none;
+    padding-right: 160px;
+    top: 140px;
+  }
+  .pause-img:hover {
+    opacity: 50%;
+  }

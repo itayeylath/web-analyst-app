@@ -17,8 +17,8 @@ import ButtonLeft from "./graph-functionality/button-left";
 import ButtonRight from "./graph-functionality/button-right";
 import ButtonStop from "./graph-functionality/stop-button";
 import ButtonPause from "./graph-functionality/pause-button";
-import ButtonStart from "./graph-functionality/stop-button copy";
-import ButtonEdit from "./graph-functionality/button-left copy";
+import ButtonStart from "./graph-functionality/stop-start";
+import ButtonEdit from "./graph-functionality/button-edit";
 import "../styles/main.scss";
 
 // Defult data for Chart-js components otherwise, it's falls.
@@ -93,9 +93,9 @@ const Graph = (props: GraphProps) => {
       labels: [...labels],
       datasets: [
         {
-          label: "First Dataset",
+          label: "Sample",
           data: [...data],
-          backgroundColor: "red",
+          backgroundColor: "#5FFAF1",
         },
       ],
     });
@@ -112,9 +112,9 @@ const Graph = (props: GraphProps) => {
       labels: [...labels],
       datasets: [
         {
-          label: "First Dataset",
+          label: "Sample",
           data: [...data],
-          backgroundColor: "red",
+          backgroundColor: "#5FFAF1",
         },
       ],
     });
@@ -131,9 +131,9 @@ const Graph = (props: GraphProps) => {
       labels: [...labels],
       datasets: [
         {
-          label: "First Dataset",
+          label: "Sample",
           data: [...data],
-          backgroundColor: "red",
+          backgroundColor: "#5FFAF1",
         },
       ],
     });
@@ -261,12 +261,29 @@ const Graph = (props: GraphProps) => {
       />
         </div>
       </div>
+    <div className="arrows-div">
+
+      <ButtonLeft
+        isPaginationLeft={isPaginationLeft}
+        handelButtonLeft={handelButtonLeft}
+      />
+  
+      <ButtonRight
+        isPaginationRight={isPaginationRight}
+        handelButtonRight={handelButtonRight}
+      />
+
+    </div>
+
 
       <ChartJs graphObj={graphObj} loading={loading} />
+      
+      <div className="graph-buttons-div">
       <ButtonStart
         isStartSample={isStartSample}
         handelButtonStart={handelButtonStart}
       />
+
       <ButtonPause
         isPauseSample={isPauseSample}
         handelButtonPause={handelButtonPause}
@@ -275,14 +292,7 @@ const Graph = (props: GraphProps) => {
         isStopSample={isStopSample}
         handelButtonStop={handelButtonStop}
       />
-      <ButtonLeft
-        isPaginationLeft={isPaginationLeft}
-        handelButtonLeft={handelButtonLeft}
-      />
-      <ButtonRight
-        isPaginationRight={isPaginationRight}
-        handelButtonRight={handelButtonRight}
-      />
+      </div>
     </div>
   );
 };
